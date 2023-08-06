@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="mainPage_VBox1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="src.main.java.passwordmanager.controller.MainPageController">
+   <children>
+      <Label fx:id="mainpage_inserUsb_Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="123.0" text="Insert your USB Key" textAlignment="CENTER" />
+      <TextArea fx:id="maingPage_textArea1" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0" />
+   </children>
+</VBox>
