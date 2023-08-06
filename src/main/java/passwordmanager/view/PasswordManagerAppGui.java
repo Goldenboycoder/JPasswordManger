@@ -23,7 +23,7 @@ public class PasswordManagerAppGui extends Application{
         FXMLLoader loader = new FXMLLoader();
         
 
-        loader.setLocation(new URL("file:///"+new File("D:/MyFiles/Projects/JavaThings/JavaPasswordManager/src/main/resources/mainPage-layout.fxml").getAbsolutePath()));
+        loader.setLocation(new URL("file:///"+new File(System.getProperty("user.dir")+"/src/main/resources/mainPage-layout.fxml").getAbsolutePath()));
         //MainPageController mainPageController = loader.getController();
         //loader.setController(mainPageController);
         VBox vbox = loader.<VBox>load();

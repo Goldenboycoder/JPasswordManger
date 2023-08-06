@@ -49,6 +49,9 @@ public class MainPageLogicThread extends Thread {
 
                 Thread.sleep(10000);
             }
+            mainPageController.setTextArea1(String.format("Located Keys in Drive: %s", drivePath));
+            // check if the keys match by encrypting using private and decrypting using public
+            
         } catch (Exception e) {
             // TODO: handle exception
             this.mainPageController.setTextArea1(e.getMessage());
