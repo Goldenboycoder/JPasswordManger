@@ -10,6 +10,8 @@ import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.core.json.JsonReadFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import src.main.java.passwordmanager.Utils.Encryption;
+import src.main.java.passwordmanager.Utils.FileUtils;
 import src.main.java.passwordmanager.controller.MainPageController;
 import src.main.java.passwordmanager.model.PasswordManagerSettings;
 
@@ -51,7 +53,16 @@ public class MainPageLogicThread extends Thread {
             }
             mainPageController.setTextArea1(String.format("Located Keys in Drive: %s", drivePath));
             // check if the keys match by encrypting using private and decrypting using public
-            
+            String publicKey = FileUtils.readFileContent(settings.publicKeyRelativePath);
+            String privateKey = FileUtils.readFileContent(settings.privateKeyRelativePath);
+            String testString = "this is a test";
+            String cipherText = Encryption.encryptWithPrivateKey(privateKey, testString);
+            String result = Encryption.decryptWithPublicKey(publicKey, cipherText);
+            if(result.equals(testString)){
+                
+            }
+
+
         } catch (Exception e) {
             // TODO: handle exception
             this.mainPageController.setTextArea1(e.getMessage());

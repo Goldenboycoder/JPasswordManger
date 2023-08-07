@@ -1,8 +1,10 @@
 package src.main.java.passwordmanager.Utils;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileUtils {
@@ -17,5 +19,12 @@ public class FileUtils {
         }
         reader.close();
         return contentString.toString();
+    }
+
+    public static void writeToFile(String path,String content) throws IOException{
+        FileWriter writer = new FileWriter(path);
+        BufferedWriter bufferedWriter = new BufferedWriter(writer);
+        bufferedWriter.write(content);
+        writer.close();
     }
 }
