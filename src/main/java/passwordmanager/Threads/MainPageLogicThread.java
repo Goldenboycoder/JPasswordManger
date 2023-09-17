@@ -25,6 +25,18 @@ public class MainPageLogicThread extends Thread {
         this.mainPageController = mainPageController;
         drivesMap = new HashMap<String, Boolean>();
         this.loadSettings();
+        try {
+            // Generate test keys
+            byte[][] privPubKeys = Encryption.generateKeyPair(settings.rsaKeySize);
+            // write to disck test keys
+            FileUtils.writeToFile("D:\\"+settings.privateKeyRelativePath,privPubKeys[0]);
+            FileUtils.writeToFile("D:\\"+settings.publicKeyRelativePath, privPubKeys[1]);
+        } catch (Exception e) {
+            // TODO: handle exception
+            this.mainPageController.setTextArea1(e.getMessage());
+
+        }
+        
     }
 
     private void loadSettings() {
@@ -53,13 +65,21 @@ public class MainPageLogicThread extends Thread {
             }
             mainPageController.setTextArea1(String.format("Located Keys in Drive: %s", drivePath));
             // check if the keys match by encrypting using private and decrypting using public
-            String publicKey = FileUtils.readFileContent(settings.publicKeyRelativePath);
-            String privateKey = FileUtils.readFileContent(settings.privateKeyRelativePath);
+            /*String publicKey = FileUtils.readFileContent(drivePath+settings.publicKeyRelativePath);
+            String privateKey = FileUtils.readFileContent(drivePath+settings.privateKeyRelativePath);
             String testString = "this is a test";
             String cipherText = Encryption.encryptWithPrivateKey(privateKey, testString);
-            String result = Encryption.decryptWithPublicKey(publicKey, cipherText);
+            String result = Encryption.decryptWithPublicKey(publicKey, cipherText);*/
+            
+            byte[] publicKey = FileUtils.readFileBytes(settings.publicKeyPath);
+            byte[] privateKey = FileUtils.readFileBytes(drivePath+settings.privateKeyRelativePath);
+            String testString = "this is a test";
+            String cipherText = Encryption.encryptWithPublicKey(publicKey, testString);
+            //String cipherText = Encryption.encryptWithPrivateKey(privateKey, testString);
+            String result = Encryption.decryptWithPrivateKey(privateKey, cipherText);
+
             if(result.equals(testString)){
-                
+                mainPageController.setTextArea1("Keys match");
             }
 
 
@@ -72,8 +92,8 @@ public class MainPageLogicThread extends Thread {
 
     private boolean isDriveContainsKeys(File drive) {
         File privateKey = new File(drive.getAbsolutePath() + this.settings.privateKeyRelativePath);
-        File publicKey = new File(drive.getAbsolutePath() + this.settings.publicKeyRelativePath);
-        return privateKey.exists() && publicKey.exists();
+        //File publicKey = new File(drive.getAbsolutePath() + this.settings.publicKeyRelativePath);
+        return privateKey.exists() ;//&& publicKey.exists();
 
     }
 

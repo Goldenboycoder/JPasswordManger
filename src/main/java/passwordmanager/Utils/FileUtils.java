@@ -6,6 +6,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.OpenOption;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class FileUtils {
    
@@ -21,10 +26,23 @@ public class FileUtils {
         return contentString.toString();
     }
 
+    public static byte[] readFileBytes(String path) throws IOException{
+        Path file = Paths.get(path);
+        return Files.readAllBytes(file);
+    }
+
     public static void writeToFile(String path,String content) throws IOException{
-        FileWriter writer = new FileWriter(path);
-        BufferedWriter bufferedWriter = new BufferedWriter(writer);
-        bufferedWriter.write(content);
+        FileWriter writer = new FileWriter(path,Charset.forName("utf-8"));
+        writer.write(content);
+        //BufferedWriter bufferedWriter = new BufferedWriter(writer);
+        //bufferedWriter.write(content);
         writer.close();
+    }
+
+    public static void writeToFile(String path,byte[] content) throws IOException{
+        Path file = Paths.get(path); 
+        Files.write(file, content);
+        //BufferedWriter bufferedWriter = new BufferedWriter(writer);
+        //bufferedWriter.write(content);
     }
 }

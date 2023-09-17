@@ -18,6 +18,7 @@ public class EventManager {
     public void subscribe(String eventType, IEventListener listener){
         List<IEventListener> listenersList = listeners.get(eventType);
         listenersList.add(listener);
+        listeners.put(eventType,listenersList);
     }
 
     public void notify(String eventType, String message){

@@ -4,6 +4,7 @@ public class PasswordManagerSettings {
    
     public String privateKeyRelativePath;
     public String publicKeyRelativePath;
+    public String publicKeyPath;
     public Integer rsaKeySize;
 
 }
