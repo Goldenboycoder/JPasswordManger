@@ -24,7 +24,7 @@ public class MainPageController {
     }
 
     public void setTextArea1(String text) {
-        Platform.runLater(() -> maingPage_textArea1.setText(maingPage_textArea1.getText() + "\n" + text));
+        Platform.runLater(() -> maingPage_textArea1.appendText("\n" + text));//.setText(maingPage_textArea1.getText() + "\n" + text));
     }
 
     public void setMainLabel(String text) {
