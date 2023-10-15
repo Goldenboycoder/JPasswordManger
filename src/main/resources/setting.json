@@ -2,5 +2,6 @@
     "privateKeyRelativePath":"MyFiles\\Projects\\JavaThings\\TestDir\\privateKey",
     "publicKeyRelativePath":"MyFiles\\Projects\\JavaThings\\TestDir\\publicKey",
     "publicKeyPath":"D:\\MyFiles\\Projects\\JavaThings\\TestDir\\publicKey",
-    "rsaKeySize":1024
+    "rsaKeySize":1024,
+    "language":"English"
 }
